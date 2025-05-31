@@ -6,12 +6,18 @@
 
 {{ if or .Site.Params.homeIntroTitle .Site.Params.homeIntroContent }}
 <div class="intro">
-    {{ with .Site.Params.homeIntroTitle }}
-    <h1>{{ . }}</h1>
-    {{ end }}
-
-    {{ with .Site.Params.homeIntroContent }}
-    <p>{{ . | markdownify }}</p>
+    <div class="intro-text">
+        {{ with .Site.Params.homeIntroTitle }}
+        <h1>{{ . }}</h1>
+        {{ end }}
+        {{ with .Site.Params.homeIntroContent }}
+        <p>{{ . | markdownify }}</p>
+        {{ end }}
+    </div>    
+    {{ with .Site.Params.homeIntroImage }}
+    <div class="intro-image">
+        <img src="{{ . | relURL }}" alt="My Photo">
+    </div>
     {{ end }}
 </div>
 {{ end }}
