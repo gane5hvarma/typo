@@ -1,0 +1,54 @@
+/* Word-by-word title animation */
+.animated-title {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 2.5rem;
+  font-family: 'Courier New', monospace;
+  color: #00ffcc;
+}
+
+.animated-title .word {
+  opacity: 0;
+  display: inline-block;
+  margin-right: 0.3em;
+  animation: fadeInWord 0.5s forwards;
+}
+
+{{/* We assume about 6 words, customize timing if needed */}}
+.animated-title .word-0 { animation-delay: 0s; }
+.animated-title .word-1 { animation-delay: 0.5s; }
+.animated-title .word-2 { animation-delay: 1s; }
+.animated-title .word-3 { animation-delay: 1.5s; }
+.animated-title .word-4 { animation-delay: 2s; }
+.animated-title .word-5 { animation-delay: 2.5s; }
+
+@keyframes fadeInWord {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Paragraph appears after title animation */
+.intro-paragraph {
+  opacity: 0;
+  transition: opacity 1s ease;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-top: 1rem;
+  color: #dddddd;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.animated-title .word-5 {
+  animation-fill-mode: forwards;
+}
+
+/* Trigger appearance of paragraph after delay */
+.hidden-until-animation {
+  animation: fadeInParagraph 1s forwards;
+  animation-delay: 3.5s;
+}
+
+@keyframes fadeInParagraph {
+  to { opacity: 1; }
+}

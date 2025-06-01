@@ -7,11 +7,16 @@
 {{ if or .Site.Params.homeIntroTitle .Site.Params.homeIntroContent }}
 <div class="intro">
     <div class="intro-text">
-        {{ with .Site.Params.homeIntroTitle }}
-        <h1>{{ . }}</h1>
+        {{ $title := .Site.Params.homeIntroTitle }}
+        {{ if $title }}
+        <h1 class="animated-title">
+            {{ range $index, $word := split $title " " }}
+            <span class="word word-{{ $index }}">{{ $word }}</span>
+            {{ end }}
+        </h1>
         {{ end }}
         {{ with .Site.Params.homeIntroContent }}
-        <p>{{ . | markdownify }}</p>
+        <div class="intro-paragraph hidden-until-animation">{{ . | markdownify }}</div>
         {{ end }}
     </div>    
     {{ with .Site.Params.homeIntroImage }}
